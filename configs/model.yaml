@@ -1,0 +1,8 @@
+backbone: mobilenet_v2      # mobilenet_v2 | efficientnet_b0
+input_size: 224
+num_classes: 29
+dense_units: 256
+dropout_rate: 0.5
+phase1_lr: 0.001
+phase2_lr: 0.00001
+fine_tune_layers: 30

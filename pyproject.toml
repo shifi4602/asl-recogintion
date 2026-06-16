@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "asl-recognition"
+version = "0.1.0"
+description = "Professional ASL Sign Language Recognition System — Clean Architecture + DI"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    # ML
+    "tensorflow>=2.15.0",
+    "mediapipe>=0.10.0",
+    "torch>=2.4.0",
+    "transformers>=4.45.0",
+    # Data
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scikit-learn>=1.3.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "Pillow>=10.0.0",
+    # API
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.27.0",
+    "python-multipart>=0.0.9",
+    # Auth
+    "python-jose[cryptography]>=3.3.0",
+    "bcrypt>=4.0.0",
+    # DI
+    "dependency-injector>=4.41.0",
+    # Config
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "pyyaml>=6.0.0",
+    # Experiment tracking
+    "mlflow>=2.10.0",
+    # CLI
+    "typer>=0.9.0",
+    # Logging
+    "loguru>=0.7.0",
+    # Kaggle dataset download
+    "kaggle>=1.6.0",
+    # OpenCV (webcam)
+    "opencv-python>=4.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "httpx>=0.26.0",
+    "anyio>=4.0.0",
+]
+
+[project.scripts]
+asl = "asl.presentation.cli.commands:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/asl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=src/asl --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["src/asl"]
+omit = ["*/tests/*"]

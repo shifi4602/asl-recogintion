@@ -1,0 +1,6 @@
+phase1_epochs: 10
+phase2_epochs: 5
+batch_size: 32
+early_stopping_patience: 3
+mlflow_tracking_uri: http://localhost:5000
+mlflow_experiment: asl-recognition
